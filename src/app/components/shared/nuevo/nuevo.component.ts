@@ -16,10 +16,10 @@ export class NuevoComponent implements OnInit {
  }
  
 
- forma: FormGroup;
+ formaNuevo: FormGroup;
 
   constructor(private mail: MailsService) {
-    this.forma = new FormGroup({
+    this.formaNuevo = new FormGroup({
       'asunto': new FormControl('', [Validators.required, Validators.maxLength(50)]),
       'destinatario': new FormControl('', [Validators.required, Validators.email]),
       'contenido': new FormControl('', Validators.required)

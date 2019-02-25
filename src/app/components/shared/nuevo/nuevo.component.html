@@ -1,36 +1,55 @@
-<form (ngSubmit)="CorreoNuevo()" #forma="ngForm" class="mb-4">
+<form [formGroup]="formaNuevo" (ngSubmit)="CorreoNuevo()" class="mb-4">
 <h5>Correo nuevo</h5>
 <hr>
   <div>
     
     <label class="mt-1">Asunto</label>
-    <input  [(ngModel)]="nuevo.subject"
-            name="subject"
-            class="form-control" 
-            type="text"  
-            placeholder="describir asunto"
-            required>
+    <div>
+        <div *ngIf="formaNuevo.controls['asunto'].errors?.required">
+                <small style="color: red">El asunto es requerido.</small>
+
+        </div>
+        <div *ngIf="formaNuevo.controls['asunto'].errors?.maxlength">
+                <small style="color: red">El asunto no puede tener más de 50 caracteres.</small>
+        </div>
+        <input 
+                class="form-control" 
+                type="text"  
+                placeholder="describir asunto"
+                formControlName="asunto"
+                >
+    </div>
     
     <label class="mt-1">Destinatario</label>
-    <input [(ngModel)]="nuevo.receiver"
-            name="receiver"
-            type="email" 
-            class="form-control" 
-            placeholder="ejemplo@ejemplo.com"
-            required>
-    
+    <div>
+<div *ngIf="formaNuevo.controls['destinatario'].errors?.email || formaNuevo.controls['destinatario'].errors?.required">
+                <small style="color: red">El destinatario es requerido.</small>
+        </div>
+
+        <input 
+                type="email" 
+                class="form-control" 
+                placeholder="ejemplo@ejemplo.com"
+                formControlName="destinatario"
+        >
+    </div>
     <label class="mt-1">Descripción</label>
-    <textarea [(ngModel)]="nuevo.description"
-              name="description"
-              type="text"
-              class="form-control" 
-              required>
-    </textarea>
-    <button [disabled]="!forma.valid"
+    <div>
+        <div *ngIf="formaNuevo.controls['contenido'].errors?.required">
+                <small style="color: red">El contenido es requerido.</small>
+        </div>
+                <textarea 
+                        type="text"
+                        class="form-control" 
+                        formControlName="contenido"
+                        >
+                </textarea>
+        </div>
+        <button [disabled]="!formaNuevo.valid"
             type="submit" 
             class="btn btn-primary mt-2"
-            >
-            Enviar
+        >
+        Enviar
     </button>
   </div>
 </form>
