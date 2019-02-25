@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Nuevo } from '../interfaces/nuevo.interface';
-import { LogIn } from './../interfaces/login.interface';
-
 
 @Injectable({
   providedIn: 'root'
@@ -45,14 +43,4 @@ export class MailsService {
 
     return this.http.post(this.postUrl, body, { headers: headers });
   }
-
-  nuevoLogin(login: LogIn){
-    let body = JSON.stringify(login);
-    let headers = new HttpHeaders({
-      'Contentent-Type': 'applicaion/json'
-    });
-
-    return this.http.post(this.postLoginUrl, body, { headers: headers });
-  }
-  
 }

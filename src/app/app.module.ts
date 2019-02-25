@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 // Rutas
@@ -18,6 +18,7 @@ import { EliminadosComponent } from './components/shared/eliminados/eliminados.c
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { BannerComponent } from './components/shared/banner/banner.component';
+import { LoginGuard } from './login/login.guard';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,10 @@ import { BannerComponent } from './components/shared/banner/banner.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoginGuard, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

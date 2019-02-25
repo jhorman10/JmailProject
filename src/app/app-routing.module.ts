@@ -6,18 +6,22 @@ import { BandejaentradaComponent } from './components/shared/bandejaentrada/band
 import { EnviadosComponent } from './components/shared/enviados/enviados.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginGuard } from './login/login.guard';
+import { AppComponent } from './app.component';
 
 const app_routes: Routes = [
   
-  { path: 'home', component:HomeComponent },
-  { path: 'Bandeja de entrada', component: BandejaentradaComponent },
-  { path: 'Nuevo', component: NuevoComponent},
-  { path: 'Eliminado', component: EliminadosComponent},
-  { path: 'Enviados', component: EnviadosComponent},
-  { path: 'login', component:LoginComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+  { path: 'Home', component:HomeComponent, canActivate: [LoginGuard] },
+  { path: 'Bandeja de entrada', component: BandejaentradaComponent, canActivate: [LoginGuard] },
+  { path: 'Nuevo', component: NuevoComponent, canActivate: [LoginGuard]},
+  { path: 'Eliminado', component: EliminadosComponent, canActivate: [LoginGuard]},
+  { path: 'Enviados', component: EnviadosComponent, canActivate: [LoginGuard]},
+  { path: 'Login', component:LoginComponent },
+  { path: 'App', component: AppComponent, canActivate: [LoginGuard] },
+  { path: '', pathMatch: 'full', redirectTo: 'Login' },
+  { path: '**', pathMatch: 'full', redirectTo: 'Login' }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(app_routes)],
