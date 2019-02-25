@@ -1,0 +1,21 @@
+
+<h5>Eliminados</h5>
+<hr>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Asunto</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Fecha de envio</th>
+    </tr>
+  </thead>
+<tbody *ngFor="let item of eliminado, index as i">
+    <tr *ngIf="item.favorite==false && item.state==false">
+      <th scope="row">{{i+1}}</th>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.sender }}</td>
+      <td>{{ item.created_date }} </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,85 @@
+<h5>Buscador</h5>
+<div class="input-group flex-nowrap mb-1">
+  <input  
+          class="form-control" 
+          type="text" 
+          placeholder="Buscar asunto pulsar enter-" 
+          #buscar
+          (keyup.enter)="getBuscador(buscar.value)"
+  >
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Favorito</th>
+      <th scope="col">#</th>
+      <th scope="col">Asunto</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Fecha de envio</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of inbox; index as i">
+    <tr *ngIf="item.subject == buscar.value">
+      <div class="check d-flex justify-content-center align-items-center">
+        <td><input type="checkbox"></td>
+      </div>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.sender }}</td>
+      <td>{{ item.created_date }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<br>
+<h5>Favoritos</h5>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Favorito</th>
+      <th scope="col">#</th>
+      <th scope="col">Asunto</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Fecha de envio</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of inbox, index as i">
+    <tr *ngIf="item.favorite==true">
+      <div class="check d-flex justify-content-center align-items-center">
+        <td><input type="checkbox" checked></td>
+      </div>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.sender }}</td>
+      <td>{{ item.created_date }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h5>Recibidos</h5>
+<table class="table">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col">Favorito</th>
+      <th scope="col">#</th>
+      <th scope="col">Asunto</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Fecha de envio</th>
+    </tr>
+  </thead>
+<tbody *ngFor="let item of inbox, index as i">
+    <tr *ngIf="item.favorite==false && item.state==true">
+      <div class="check d-flex justify-content-center align-items-center">
+        <td><input type="checkbox" ></td>
+      </div>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.sender }}</td>
+      <td>{{ item.created_date }}</td>
+    </tr>
+</tbody>
+</table>

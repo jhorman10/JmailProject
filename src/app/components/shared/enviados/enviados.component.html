@@ -1,0 +1,21 @@
+
+<h5>Enviados</h5>
+<hr>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Asunto</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Contenido</th>
+    </tr>
+  </thead>
+<tbody *ngFor="let item of enviados, index as i">
+    <tr>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.receiver }}</td>
+      <td>{{ item.description }} </td>
+    </tr>
+  </tbody>
+</table>

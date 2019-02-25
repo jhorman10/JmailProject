@@ -1,0 +1,36 @@
+<form (ngSubmit)="CorreoNuevo()" #forma="ngForm" class="mb-4">
+<h5>Correo nuevo</h5>
+<hr>
+  <div>
+    
+    <label class="mt-1">Asunto</label>
+    <input  [(ngModel)]="nuevo.subject"
+            name="subject"
+            class="form-control" 
+            type="text"  
+            placeholder="describir asunto"
+            required>
+    
+    <label class="mt-1">Destinatario</label>
+    <input [(ngModel)]="nuevo.receiver"
+            name="receiver"
+            type="email" 
+            class="form-control" 
+            placeholder="ejemplo@ejemplo.com"
+            required>
+    
+    <label class="mt-1">Descripción</label>
+    <textarea [(ngModel)]="nuevo.description"
+              name="description"
+              type="text"
+              class="form-control" 
+              required>
+    </textarea>
+    <button [disabled]="!forma.valid"
+            type="submit" 
+            class="btn btn-primary mt-2"
+            >
+            Enviar
+    </button>
+  </div>
+</form>
